@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="LOREM IPSUM">
+    <meta name="author" content="ARKAVE ARENA">
 
     <meta name="description" content="Inspirações, brushes, mockups, fontes e muito mais...">
     <meta name="robot" content="index, follow">
@@ -99,17 +99,52 @@
 
     -->
 
+    <script src="js/classie.js"></script>
+    <script>
+        (function() {
+            // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+            if (!String.prototype.trim) {
+                (function() {
+                    // Make sure we trim BOM and NBSP
+                    var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+                    String.prototype.trim = function() {
+                        return this.replace(rtrim, '');
+                    };
+                })();
+            }
+
+            [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+                // in case the input is already filled..
+                if( inputEl.value.trim() !== '' ) {
+                    classie.add( inputEl.parentNode, 'input--filled' );
+                }
+
+                // events:
+                inputEl.addEventListener( 'focus', onInputFocus );
+                inputEl.addEventListener( 'blur', onInputBlur );
+            } );
+
+            function onInputFocus( ev ) {
+                classie.add( ev.target.parentNode, 'input--filled' );
+            }
+
+            function onInputBlur( ev ) {
+                if( ev.target.value.trim() === '' ) {
+                    classie.remove( ev.target.parentNode, 'input--filled' );
+                }
+            }
+        })();
+    </script>
+
     <footer id="contato">
         <div class="container">
             <h2>Nós <i class="fa fa-heart"></i> novos amigos!</h2>
             <ul class="list-inline list-social">
                 <li class="social-facebook">
-                    <a href="https://www.facebook.com/gutterthinking/" target="_blank">Siga a gente no <i class="fa fa-facebook"></i>acebook</a>
+                    <a href="https://www.facebook.com/" target="_blank">Siga a gente no <i class="fa fa-facebook"></i>acebook</a>
                 </li>
             </ul>
-            <br />
-            <a href="mailto:gutterthink@gmail.com" style="color:#fff; text-decoration:none"><p>gutterthink@gmail.com</p></a>
-            <p>&copy; 2017 Gutter Think.</p>
+
         </div>
     </footer>
 
@@ -123,6 +158,8 @@
             }
         })();
     </script>
+
+    
 
     <!-- jQuery -->
     <script src="lib/jquery/jquery.min.js"></script>
