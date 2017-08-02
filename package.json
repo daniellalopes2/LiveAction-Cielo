@@ -43,7 +43,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/anonymous node/sails user/LiveAction-Cielo.git"
+    "url": "git://https://github.com/felipej26/LiveAction-Cielo.git"
   },
   "author": "anonymous node/sails user",
   "license": ""
